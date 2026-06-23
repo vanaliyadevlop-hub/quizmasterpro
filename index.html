@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizMaster Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ====== APP LOADING ====== -->
+<div id="app-loading" class="app-loading">
+  <div class="loading-logo">
+    <div class="loading-icon">🎯</div>
+    <h2>QuizMaster Pro</h2>
+    <div class="loading-bar"><div class="loading-fill"></div></div>
+  </div>
+</div>
+
+<!-- ====== WELCOME PAGE ====== -->
+<div id="page-welcome" class="page hidden">
+  <nav class="welcome-nav">
+    <div class="nav-brand">
+      <span class="brand-icon">🎯</span>
+      <span class="brand-name">QuizMaster Pro</span>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-ghost" onclick="showAuthPage('login')">Sign In</button>
+      <button class="btn btn-primary" onclick="showAuthPage('register')">Get Started</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">🚀 Modern Quiz Platform</span>
+      <h1 class="hero-title">Knowledge Testing,<br><span class="text-accent">Reimagined</span></h1>
+      <p class="hero-sub">Create engaging quizzes, track student progress, and deliver instant results — all in one powerful platform designed for modern education.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary btn-lg" onclick="showAuthPage('register')">Start Free</button>
+        <button class="btn btn-outline btn-lg" onclick="showAuthPage('login')">Sign In →</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">User Roles</span></div>
+        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Quiz Questions</span></div>
+        <div class="stat"><span class="stat-num">📊</span><span class="stat-label">Live Reports</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="quiz-card-preview">
+        <div class="preview-header">
+          <span class="preview-title">Sample Question</span>
+          <span class="preview-prog">2 / 10</span>
+        </div>
+        <div class="preview-bar"><div class="preview-fill" style="width:20%"></div></div>
+        <p class="preview-question">What is the powerhouse of the cell?</p>
+        <div class="preview-options">
+          <div class="preview-opt">🔵 Nucleus</div>
+          <div class="preview-opt selected">🟢 Mitochondria</div>
+          <div class="preview-opt">⚪ Ribosome</div>
+          <div class="preview-opt">⚪ Golgi Body</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="roles-section">
+    <h2 class="section-title">Built for Everyone in Education</h2>
+    <div class="roles-grid">
+      <div class="role-card role-super">
+        <div class="role-icon">🔮</div>
+        <h3>Super User</h3>
+        <p>Full platform control and oversight</p>
+        <ul>
+          <li>✓ Manage all users & roles</li>
+          <li>✓ View all quizzes & results</li>
+          <li>✓ Platform-wide analytics</li>
+          <li>✓ Complete admin access</li>
+        </ul>
+      </div>
+      <div class="role-card role-teacher">
+        <div class="role-icon">📚</div>
+        <h3>Teacher</h3>
+        <p>Create, manage & analyze quizzes</p>
+        <ul>
+          <li>✓ Create & publish quizzes</li>
+          <li>✓ Add questions or upload Excel</li>
+          <li>✓ View student progress reports</li>
+          <li>✓ Declare official results</li>
+        </ul>
+      </div>
+      <div class="role-card role-student">
+        <div class="role-icon">🎓</div>
+        <h3>Student</h3>
+        <p>Attempt quizzes & track progress</p>
+        <ul>
+          <li>✓ Take available quizzes</li>
+          <li>✓ Instant score & grade</li>
+          <li>✓ Review answer breakdown</li>
+          <li>✓ Track all past results</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="welcome-footer">
+    <p>© 2025 QuizMaster Pro · Built with Firebase</p>
+  </footer>
+</div>
+
+<!-- ====== AUTH PAGE ====== -->
+<div id="page-auth" class="page hidden">
+  <div class="auth-layout">
+    <div class="auth-brand">
+      <a href="#" onclick="showPage('welcome')" class="back-link">← Back</a>
+      <div class="auth-brand-inner">
+        <div class="auth-logo">🎯</div>
+        <h2>QuizMaster Pro</h2>
+        <p>Your complete quiz management platform</p>
+        <div class="auth-features">
+          <div>🔐 Secure Authentication</div>
+          <div>🚀 Instant Results</div>
+          <div>📊 Live Analytics</div>
+        </div>
+      </div>
+    </div>
+    <div class="auth-form-side">
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button id="tab-login" class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
+          <button id="tab-register" class="auth-tab" onclick="switchAuthTab('register')">Register</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="auth-login">
+          <h2 class="form-heading">Welcome back</h2>
+          <p class="form-sub">Sign in to your account</p>
+          <form id="form-login" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="login-email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="login-password" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="btn-login">
+              <span>Sign In</span>
+            </button>
+          </form>
+          <p class="auth-switch">Don't have an account? <a href="#" onclick="switchAuthTab('register')">Register here</a></p>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="auth-register" class="hidden">
+          <h2 class="form-heading">Create account</h2>
+          <p class="form-sub">Join QuizMaster Pro today</p>
+          <form id="form-register" onsubmit="handleRegister(event)">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="reg-name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="reg-email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="reg-password" placeholder="Min 6 characters" required minlength="6">
+            </div>
+            <div class="form-group">
+              <label>Role</label>
+              <div class="role-select">
+                <label class="role-opt">
+                  <input type="radio" name="reg-role" value="student" checked>
+                  <span class="role-opt-inner">🎓 Student</span>
+                </label>
+                <label class="role-opt">
+                  <input type="radio" name="reg-role" value="teacher">
+                  <span class="role-opt-inner">📚 Teacher</span>
+                </label>
+                <label class="role-opt">
+                  <input type="radio" name="reg-role" value="superuser">
+                  <span class="role-opt-inner">🔮 Super User</span>
+                </label>
+              </div>
+            </div>
+            <div id="admin-code-group" class="form-group hidden">
+              <label>Admin Code <span class="label-hint">(Required for Super User)</span></label>
+              <input type="password" id="reg-admin-code" placeholder="Enter admin code">
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="btn-register">
+              <span>Create Account</span>
+            </button>
+          </form>
+          <p class="auth-switch">Already have an account? <a href="#" onclick="switchAuthTab('login')">Sign in here</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== MAIN APP ====== -->
+<div id="page-app" class="page hidden">
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <div class="sidebar-logo">
+      <span>🎯</span>
+      <span>QuizMaster</span>
+    </div>
+    <nav id="sidebar-nav" class="sidebar-nav"></nav>
+    <div class="sidebar-user">
+      <div class="user-avatar-wrap">
+        <div class="user-avatar" id="user-initials"></div>
+        <div class="user-meta">
+          <p class="user-name-sb" id="sidebar-username"></p>
+          <span class="role-badge" id="sidebar-role-badge"></span>
+        </div>
+      </div>
+      <button class="btn-logout" onclick="handleLogout()" title="Sign Out">⏻</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="app-body">
+    <header class="app-header">
+      <div class="header-left">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+        <div>
+          <h1 id="page-title" class="page-title">Dashboard</h1>
+          <p id="page-breadcrumb" class="page-breadcrumb"></p>
+        </div>
+      </div>
+      <div class="header-right" id="header-actions"></div>
+    </header>
+    <main id="app-main" class="app-main"></main>
+  </div>
+</div>
+
+<!-- ====== MODAL ====== -->
+<div id="modal-overlay" class="modal-overlay hidden" onclick="handleModalClick(event)">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ====== TOAST ====== -->
+<div id="toast-container" class="toast-container"></div>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<!-- SheetJS for Excel upload -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<!-- App -->
+<script src="app.js"></script>
+</body>
+</html>
+
